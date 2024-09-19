@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  {{ if .Site.IsMultiLingual }}
+  var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+  {{ else }}
+  var baseurl = "{{.Site.BaseURL}}";
+  {{ end }}
+</script>
+
+{{ $JS := slice
+  ( resources.Get "js/pv.js" | minify )
+  ( resources.Get "js/menu.js" | minify )
+  ( resources.Get "lib/jquery.min.js" )
+  ( resources.Get "lib/popper.min.js" )
+  ( resources.Get "lib/bootstrap.min.js" )
+  ( resources.Get "plugins/lunr.min.js" )
+  ( resources.Get "plugins/auto-complete.js" | minify )
+  ( resources.Get "plugins/search.js" | minify )
+  ( resources.Get "plugins/clipboard.js" | minify )
+  ( resources.Get "js/playground.js" | minify )
+  ( resources.Get "js/header-links.js" | minify )
+  | resources.Concat "js/bundle.js" | resources.Fingerprint "sha512" }}
+
+<script type="text/javascript" src="{{ $JS.RelPermalink }}" integrity="{{ $JS.Data.Integrity }}"></script>

@@ -1,0 +1,16 @@
+/dist/
+/code/*.html
+/code/**/*.html
+/resources/
+
+/cue.mod/gen/
+/cue.mod/pkg/
+
+/notes/
+
+vendor/
+/pv/
+node_modules/
+
+.hugo_build.lock
+public

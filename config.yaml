@@ -1,0 +1,72 @@
+baseURL: https://cuetorials.com/
+languageCode: en-us
+DefaultContentLanguage: en
+title: Cuetorials
+enableGitInfo: true
+pygmentsCodeFences: true
+pygmentsStyle: github
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableMissingTranslationPlaceholders: false
+params:
+  ordersectionsby: weight
+  disableSearch: false
+  disableReadmoreNav: false
+  highlightClientSide: false
+  menushortcutsnewtab: true
+  ga: G-LXK0DFYZX4
+  github_project_repo: https://github.com/hofstadter-io/cuetorials.com
+  github_repo: https://github.com/hofstadter-io/cuetorials.com
+  time_format_default: January 2, 2006
+  keywords:
+    - cue
+    - cuelang
+    - tutorial
+    - example
+  hofver: v0.6.9-alpha.3
+  cuever: v0.6.0
+  cuedocBase: https://pkg.go.dev/cuelang.org/go@v0.6.0
+languages:
+  en:
+    title: !!binary Q3VldG9yaWFscw==
+    weight: 1
+    languageName: !!binary RW5nbGlzaA==
+  zh:
+    title: !!binary Q3VldG9yaWFscw==
+    weight: 2
+    languageName: !!binary 566A5L2T5Lit5paH
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  page:
+    - HTML
+    - JSON
+  section:
+    - HTML
+    - JSON
+menu:
+  shortcuts:
+    - name: v0.6.0 <i class='fas fa-copyright pl-2'></i> Cuelang.org
+      url: https://cuelang.org
+      weight: 0
+    - name: <i class='fab fa-github'></i> GitHub
+      url: https://github.com/cue-lang/cue
+      weight: 1
+    - name: <i class='fas fa-play-circle'></i> Playground
+      url: https://cuelang.org/play/
+      weight: 2
+    - name: <i class='fas fa-user'></i> Community
+      url: https://cuelang.org/community/
+      weight: 3
+    - name: <i class='fab fa-github'></i> Cuetorials GH
+      url: https://github.com/hofstadter-io/cuetorials.com
+      weight: 4

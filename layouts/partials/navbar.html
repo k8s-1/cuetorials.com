@@ -1,0 +1,62 @@
+{{ $slang := .Site.Language.Lang }}
+{{ $rlink := .RelPermalink }}
+{{ $link := strings.TrimPrefix $slang (strings.TrimPrefix "/" $rlink) }}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top" id="navbarMain">
+    <div class="container-fluid">
+        <div>
+            <a class="navbar-brand" href="{{ .Site.BaseURL | relLangURL }}">
+                {{ with .Site.Params.site_logo }}
+                    <img src="{{ . }}" />
+                {{ end }}
+        <span class="underscore">_</span>{{ .Site.Title }}
+            </a>
+        </div>
+        <!-- only add the navbar toggle button if there are elements within the toggle -->
+        {{- if .Site.Menus.shortcuts}}
+            <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarMainCollapse" aria-controls="navbarMainCollapse" aria-expanded="false" aria-label="Toggle navigation">
+							<i class='fas fa-bars fa-lg text-white'></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMainCollapse">
+              <ul class="navbar-nav ml-auto">
+                  {{- with .Site.Menus.shortcuts}}
+                        {{- range sort . "Weight"}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{.URL}}" {{if eq $.Site.Params.menushortcutsnewtab true}}target="_blank"{{end}}>
+                                  {{safeHTML .Name}}
+                                </a>
+                            </li>
+                        {{- end}}
+                  {{- end}}
+                  <li class="nav-item dropdown">
+                      <a class="nav-link" href="{{ .RelPermalink }}" data-toggle="dropdown">
+                          <i class='fa fa-globe-europe'></i>
+                           {{ .Site.Language.LanguageName }}
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-right" role="menu" style="min-width:100px" >
+
+                          {{ range $.Site.Home.AllTranslations }}
+                            {{ $lang := .Language.Lang }}
+                            <li class="text-center">
+                              <a class="lang-link" href="
+                                {{- if eq $lang $slang -}}
+                                  {{ $rlink }}
+                                {{- else -}}
+                                  {{ if eq $lang "en" }}
+                                    {{ $link }}
+                                  {{- else -}}
+                                    /{{ $lang }}/{{ $link }}
+                                  {{- end -}}
+                                {{- end -}}
+                              ">
+                                {{ .Language.LanguageName }}
+                                </a>
+                            </li>
+                          {{ end }}
+                      </ul>
+                  </li>
+              </ul>
+            </div>
+        {{- end}}
+    </div>
+</nav>
